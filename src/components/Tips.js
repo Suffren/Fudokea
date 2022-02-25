@@ -1,19 +1,7 @@
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const tips = [
-	{
-		"id": 1,
-		"title": "Title here",
-		"content": "lorem ipsum"
-	},
-	{
-		"id": 2,
-		"title": "Title two",
-		"content": "lorem ipsum"
-	}
-]
-
-function Tips() {
+function Tips({tips}) {
 	return <div>
 		<nav>
 			{tips.map(tip =>
@@ -31,4 +19,9 @@ function Tips() {
 	</div>
 }
 
-export default Tips
+const TipStore = connect(
+	state => ({
+		tips: state.tips
+	})
+)(Tips)
+export default TipStore

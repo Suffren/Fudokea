@@ -4,12 +4,25 @@ import { BrowserRouter } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TipReducer from './reducers/TipReducer';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+
+const store = createStore(
+  combineReducers({
+    tips: TipReducer,
+    filter: (state= 0, action) => state.read
+  }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
