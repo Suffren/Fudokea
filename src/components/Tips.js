@@ -1,26 +1,35 @@
-import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
+import { Link } from "react-router-dom"
+import { connect } from 'react-redux'
 import { useState } from 'react'
 
 function Tips({ tips, onAddTip }) {
-	const [newTip, setTip] = useState("")
+	const [titleTip, setTitleTip] = useState("")
+	const [contentTip, setContentTip] = useState("")
 	const [tipList, setTipList] = useState(tips)
+
 	const submitTip = function() {
-		const tip = { title: newTip, id: tips.length + 1}
+		const tip = { title: titleTip, id: tips.length + 1, content: contentTip}
 		onAddTip(tip)
 		setTipList(tipList.concat(tip));
-		setTip('')
-	};
-	function handleChange(event) {
-		setTip(event.target.value);
+		setTitleTip('')
+		setContentTip('')
 	}
+
+	function handleTitleChange(event) {
+		setTitleTip(event.target.value)
+	}
+	function handleContentChange(event) {
+		setContentTip(event.target.value)
+	}
+
 	return <div>
 		<nav>
 			{tipList.map((tip, id) =>
 				<li key={id}>
 					<Link
 						to={`/tips/${tip.id}`}
-						key={tip.id}>
+						key={tip.id}
+						state={tip}>
 						{tip.title}
 					</Link>
 				</li>
@@ -29,7 +38,8 @@ function Tips({ tips, onAddTip }) {
 
 		<Link to="/">Home</Link>
 		<div>
-			<input value={newTip} onChange={handleChange} type="text" />
+			<input value={titleTip} onChange={handleTitleChange} type="text" />
+			<input value={contentTip} onChange={handleContentChange} type="text" />
 			<button onClick={submitTip}>Add</button>
 		</div>
 	</div>
