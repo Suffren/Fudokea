@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { connect } from 'react-redux'
 import { useState } from 'react'
 
-function Tips({ tips, onAddTip }) {
+function Tips({ tips, onAddTip, onDelTip }) {
 	const [titleTip, setTitleTip] = useState("")
 	const [contentTip, setContentTip] = useState("")
 	const [tipList, setTipList] = useState(tips)
@@ -21,9 +21,14 @@ function Tips({ tips, onAddTip }) {
 	function handleContentChange(event) {
 		setContentTip(event.target.value)
 	}
+	function handleDelete(currTip) {
+		const filteredTips = tips.filter(tip => tip.id !== currTip.id)
+		setTipList(filteredTips)
+		onDelTip(currTip)
+	}
 
 	return <div>
-		<nav>
+		<div>
 			{tipList.map((tip, id) =>
 				<li key={id}>
 					<Link
@@ -32,9 +37,11 @@ function Tips({ tips, onAddTip }) {
 						state={tip}>
 						{tip.title}
 					</Link>
+					
+					<button onClick={() => handleDelete(tip)}>Delete</button>
 				</li>
 			)}
-		</nav>
+		</div>
 
 		<Link to="/">Home</Link>
 		<div>
@@ -45,7 +52,7 @@ function Tips({ tips, onAddTip }) {
 	</div>
 }
 
-const TipStore = connect(
+const TipsStore = connect(
 	state => ({
 		tips: state.tips
 	}),
@@ -53,7 +60,11 @@ const TipStore = connect(
 		onAddTip: tip => dispatch({
 			type: 'ADD_TIP_ACTION',
 			payload: { ...tip, read: false }
+		}),
+		onDelTip: tip => dispatch({
+			type: 'DELETE_TIP_ACTION',
+			payload: tip
 		})
 	})
 )(Tips)
-export default TipStore
+export default TipsStore
