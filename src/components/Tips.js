@@ -5,14 +5,12 @@ import { useState } from 'react'
 function Tips({ tips, onAddTip, onDelTip }) {
 	const [titleTip, setTitleTip] = useState("")
 	const [contentTip, setContentTip] = useState("")
-	const [tipList, setTipList] = useState(tips)
 
 	const submitTip = function() {
-		const tip = { title: titleTip, id: tips.length + 1, content: contentTip}
+		const tip = { title: titleTip, content: contentTip}
 		onAddTip(tip)
-		setTipList(tipList.concat(tip));
-		setTitleTip('')
-		setContentTip('')
+		setTitleTip("")
+		setContentTip("")
 	}
 
 	function handleTitleChange(event) {
@@ -21,15 +19,10 @@ function Tips({ tips, onAddTip, onDelTip }) {
 	function handleContentChange(event) {
 		setContentTip(event.target.value)
 	}
-	function handleDelete(currTip) {
-		const filteredTips = tips.filter(tip => tip.id !== currTip.id)
-		setTipList(filteredTips)
-		onDelTip(currTip)
-	}
 
 	return <div>
 		<div>
-			{tipList.map((tip, id) =>
+			{tips.map((tip, id) =>
 				<li key={id}>
 					<Link
 						to={`/tips/${tip.id}`}
@@ -38,7 +31,7 @@ function Tips({ tips, onAddTip, onDelTip }) {
 						{tip.title}
 					</Link>
 					
-					<button onClick={() => handleDelete(tip)}>Delete</button>
+					<button onClick={() => onDelTip(tip)}>Delete</button>
 				</li>
 			)}
 		</div>
