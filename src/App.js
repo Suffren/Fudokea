@@ -1,15 +1,17 @@
 import './App.css';
+
+import { Routes, Route } from "react-router-dom";
+import styled from 'styled-components';
+
 import Tips from './containers/Tips';
 import Tip from './components/Tip';
 import History from './containers/History';
-import { Routes, Route } from "react-router-dom";
 import Sidebar from './components/Sidebar';
 
 function App() {
   return (
     <div className="App">
-      <div style={{height: '60px',  display: 'flex', alignItems: 'center', borderBottom: '2px solid #ddd', paddingLeft: '15px' }}>HHG</div>
-        
+      <StyledHeader>EN TETE</StyledHeader>
       <div id="page">
         <Sidebar>gdfdg</Sidebar>
         <Routes>
@@ -31,3 +33,12 @@ function App() {
 }
 
 export default App;
+
+const StyledHeader = styled.div`
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  background-color: white;
+  padding-left: 15px;
+`;
