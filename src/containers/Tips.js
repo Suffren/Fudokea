@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { connect } from 'react-redux'
 import { useState } from 'react'
 
@@ -24,19 +24,18 @@ function Tips({ tips, onAddTip, onDelTip }) {
 		<div>
 			{tips.map((tip, id) =>
 				<li key={id}>
-					<Link
+					<NavLink
 						to={`/tips/${tip.id}`}
 						key={tip.id}
 						state={tip}>
 						{tip.title}
-					</Link>
+					</NavLink>
 					
 					<button onClick={() => onDelTip(tip)}>Delete</button>
 				</li>
 			)}
 		</div>
 
-		<Link to="/">Home</Link>
 		<div>
 			<input value={titleTip} onChange={handleTitleChange} type="text" />
 			<input value={contentTip} onChange={handleContentChange} type="text" />

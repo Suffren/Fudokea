@@ -5,13 +5,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TipReducer from './reducers/TipReducer';
+import FoodsReducer from './reducers/FoodsReducer';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 
 const store = createStore(
   combineReducers({
     tips: TipReducer,
-    filter: (state= 0, action) => state.read
+    foods: FoodsReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

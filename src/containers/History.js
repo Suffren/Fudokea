@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 
+import { connect } from 'react-redux'
+
 function History() {
   const h = {'name': 'fdfsfdf'};
-  return <div>
+  return <div style={{flex: 1}}>
     <p>History</p>
     <Item derp={h} />
     <Link to="/tips">Tips</Link>
@@ -15,4 +17,12 @@ function Item({derp}) {
   </div>
 }
 
-export default History;
+const FoodHitoryStore = connect(
+  state => ({
+		foods: state.foods
+	}),
+	dispatch => ({
+	
+	})
+)(History)
+export default FoodHitoryStore;
