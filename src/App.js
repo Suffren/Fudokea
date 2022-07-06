@@ -11,9 +11,9 @@ import Sidebar from "./components/Sidebar";
 function App() {
   return (
     <div className="App">
-      <StyledHeader>EN TETE</StyledHeader>
+      <StyledHeader>FUDOKEA</StyledHeader>
       <div id="page">
-        <Sidebar>gdfdg</Sidebar>
+        <Sidebar />
         <Routes>
           <Route path="/" element={<History />} />
           <Route path="tips" element={<Tips />} />
