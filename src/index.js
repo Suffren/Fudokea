@@ -1,18 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import TipReducer from './reducers/TipReducer';
-import FoodsReducer from './reducers/FoodsReducer';
-import { Provider } from 'react-redux';
-import { createStore, combineReducers } from 'redux';
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import TipReducer from "./reducers/TipReducer";
+import FoodsReducer from "./reducers/FoodsReducer";
+import { Provider } from "react-redux";
+import { createStore, combineReducers } from "redux";
 
 const store = createStore(
   combineReducers({
     tips: TipReducer,
-    foods: FoodsReducer
+    foods: FoodsReducer,
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
@@ -25,7 +25,7 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

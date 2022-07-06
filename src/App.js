@@ -1,12 +1,12 @@
-import './App.css';
+import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Tips from './containers/Tips';
-import Tip from './components/Tip';
-import History from './containers/History';
-import Sidebar from './components/Sidebar';
+import Tips from "./containers/Tips";
+import Tip from "./components/Tip";
+import History from "./containers/History";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
