@@ -1,14 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { addTip } from '../reducers/TipsReducer'
 
-function Tips({ tips, onAddTip, onDelTip }) {
+export default function Tips({ onDelTip }) {
+  const count = useSelector((state) => state.tips.count);
+  const tips = useSelector((state) => state.tips.data);
+  const dispatch = useDispatch();
+
   const [titleTip, setTitleTip] = useState("");
   const [contentTip, setContentTip] = useState("");
 
   const submitTip = function () {
     const tip = { title: titleTip, content: contentTip };
-    onAddTip(tip);
+    dispatch(addTip(tip));
     setTitleTip("");
     setContentTip("");
   };
@@ -22,6 +28,7 @@ function Tips({ tips, onAddTip, onDelTip }) {
 
   return (
     <div>
+      <span>Nombre de tips: {count}</span>
       <div>
         {tips.map((tip, id) => (
           <li key={id}>
@@ -42,22 +49,3 @@ function Tips({ tips, onAddTip, onDelTip }) {
     </div>
   );
 }
-
-const TipsStore = connect(
-  (state) => ({
-    tips: state.tips,
-  }),
-  (dispatch) => ({
-    onAddTip: (tip) =>
-      dispatch({
-        type: "ADD_TIP_ACTION",
-        payload: { ...tip, read: false },
-      }),
-    onDelTip: (tip) =>
-      dispatch({
-        type: "DELETE_TIP_ACTION",
-        payload: tip,
-      }),
-  })
-)(Tips);
-export default TipsStore;

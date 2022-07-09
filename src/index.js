@@ -4,18 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import TipReducer from "./reducers/TipReducer";
-import FoodsReducer from "./reducers/FoodsReducer";
-import { Provider } from "react-redux";
-import { createStore, combineReducers } from "redux";
-
-const store = createStore(
-  combineReducers({
-    tips: TipReducer,
-    foods: FoodsReducer,
-  }),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import { store } from './store'
+import { Provider } from 'react-redux'
 
 ReactDOM.render(
   <React.StrictMode>
