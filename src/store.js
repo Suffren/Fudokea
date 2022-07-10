@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
 
 import TipsReducer from "./reducers/TipsReducer";
 import FoodsReducer from "./reducers/FoodsReducer";
@@ -8,4 +8,4 @@ export const store = configureStore({
     tips: TipsReducer,
     foods: FoodsReducer,
   },
-})
+});

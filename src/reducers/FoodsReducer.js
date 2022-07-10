@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [
@@ -12,19 +12,17 @@ const initialState = {
       title: "Courge",
       content: "lègume",
     },
-  ]
+  ],
 };
 export const foodSlice = createSlice({
-  name: 'foods',
+  name: "foods",
   initialState,
   reducers: {
-    getFood: (state) => {
-
-    },
+    getFood: (state) => {},
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { getFood } = foodSlice.actions
+export const { getFood } = foodSlice.actions;
 
-export default foodSlice.reducer
+export default foodSlice.reducer;

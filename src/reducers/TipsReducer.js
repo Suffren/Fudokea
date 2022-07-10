@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   count: 1,
@@ -15,22 +15,22 @@ const initialState = {
       content: "lorem ipsum",
       read: false,
     },
-  ]
+  ],
 };
 
 export const tipSlice = createSlice({
-  name: 'tips',
+  name: "tips",
   initialState,
   reducers: {
     addTip: (state, action) => {
       state.count += 1;
-      const newTips = { ...action.payload, read: false, id: state.data.length }
-      state.data.push(newTips)
+      const newTips = { ...action.payload, read: false, id: state.data.length };
+      state.data.push(newTips);
     },
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { addTip } = tipSlice.actions
+export const { addTip } = tipSlice.actions;
 
-export default tipSlice.reducer
+export default tipSlice.reducer;

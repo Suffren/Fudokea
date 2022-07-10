@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCarrot, faBullhorn } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCarrot, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "styled-components";
 import Tips from "../containers/Tips";
@@ -11,7 +11,9 @@ export default function Sidebar() {
     <StyledSidebar>
       <StyledUl>
         <li>
-          <span style={{ marginRight: '20px'}}><FontAwesomeIcon icon={faCarrot} /></span>
+          <span style={{ marginRight: "20px" }}>
+            <FontAwesomeIcon icon={faCarrot} />
+          </span>
           <NavLink
             className={({ isActive }) => (isActive ? "is-active" : "")}
             to="/"
@@ -20,7 +22,9 @@ export default function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <span style={{ marginRight: '20px'}}><FontAwesomeIcon icon={faBullhorn} /></span>
+          <span style={{ marginRight: "20px" }}>
+            <FontAwesomeIcon icon={faBullhorn} />
+          </span>
           <NavLink
             className={({ isActive }) => (isActive ? "is-active" : "")}
             to="/Tips"

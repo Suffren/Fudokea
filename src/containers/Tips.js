@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { addTip } from '../reducers/TipsReducer'
+import { useSelector, useDispatch } from "react-redux";
+import { addTip } from "../reducers/TipsReducer";
 
 export default function Tips({ onDelTip }) {
   const count = useSelector((state) => state.tips.count);
