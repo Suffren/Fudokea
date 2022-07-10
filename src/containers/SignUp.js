@@ -1,4 +1,18 @@
+import { useRef, useState } from "react";
+
 export default function SignUp() {
+  const inputs = useRef([])
+
+  const addinputs = el => {
+    if(el && !inputs.current.includes(el)) {
+      inputs.current.push(el)
+    }
+  }
+
+  const handleForm = e => {
+    e.preventDefault()
+  }
+
   return (
     <div className="container">
       <div className="row" style={{ justifyContent: 'center'}}>
@@ -8,7 +22,7 @@ export default function SignUp() {
               <h5 className="card-title">Inscrivez-vous</h5>
             </div>
             <div className="card-body">
-              <form>
+              <form onSubmit={handleForm}>
                 <div className="form-group mb-3">
                   <label htmlFor="signUpEmail">Adresse email</label>
                   <input
@@ -16,6 +30,7 @@ export default function SignUp() {
                     type="email"
                     className="form-control"
                     id="signUpEmail"
+                    ref={addinputs}
                     required
                   />
                 </div>
@@ -26,6 +41,7 @@ export default function SignUp() {
                     type="type"
                     className="form-control"
                     id="signUpPassword"
+                    ref={addinputs}
                     required
                   />
                 </div>
@@ -38,10 +54,12 @@ export default function SignUp() {
                     type="type"
                     className="form-control"
                     id="repeatPassword"
+                    ref={addinputs}
                     required
                   />
                 </div>
                 <p className="text-danger m-t">Validation</p>
+                <button type="submit" class="btn btn-primary">Valider</button>
               </form>
             </div>
           </div>
