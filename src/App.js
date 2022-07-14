@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import styled from "styled-components";
 
 import Tips from "./containers/Tips";
 import Tip from "./components/Tip";

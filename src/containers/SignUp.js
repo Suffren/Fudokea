@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
+import { login } from "../ducks/users/UsersReducer";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
   const inputs = useRef([])
+  const dispatch = useDispatch();
 
   const addinputs = el => {
     if(el && !inputs.current.includes(el)) {
@@ -11,6 +14,9 @@ export default function SignUp() {
 
   const handleForm = e => {
     e.preventDefault()
+    dispatch(
+      login({ email: inputs.current[0].value, password: inputs.current[1].value})
+    )
   }
 
   return (
@@ -59,7 +65,7 @@ export default function SignUp() {
                   />
                 </div>
                 <p className="text-danger m-t">Validation</p>
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" className="btn btn-primary">Valider</button>
               </form>
             </div>
           </div>

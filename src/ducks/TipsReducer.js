@@ -30,7 +30,6 @@ export const tipSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { addTip } = tipSlice.actions;
 
 export default tipSlice.reducer;
