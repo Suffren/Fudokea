@@ -3,7 +3,8 @@ import { login } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
-  const inputs = useRef([])
+  const isLoading = useSelector((state) => state.users.isLoading);
+  const inputs = useRef([]);
   const dispatch = useDispatch();
 
   const addinputs = el => {
@@ -21,6 +22,7 @@ export default function SignUp() {
 
   return (
     <div className="container">
+      loading: {isLoading}
       <div className="row" style={{ justifyContent: 'center'}}>
         <div className="col-sm-4">
           <div className="card">

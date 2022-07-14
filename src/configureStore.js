@@ -11,7 +11,7 @@ export default function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
-  const enhancers = [middlewareEnhancer];
+  const enhancers = [middlewareEnhancer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()];
   const composedEnhancers = compose(...enhancers);
 
   const store = createStore(

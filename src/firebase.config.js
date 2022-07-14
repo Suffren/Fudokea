@@ -12,6 +12,4 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-let f = new ReduxSagaFirebase(app);
-console.log('reduxSagaFirebase', f)
-export const reduxSagaFirebase = f
+export const reduxSagaFirebase = new ReduxSagaFirebase(app);

@@ -2,11 +2,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faGear } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { logout } from "../ducks/users/UsersReducer";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function Header() {
   let history = useNavigate();
+  const dispatch = useDispatch();
 
-  function handleClick() {
+  function handleLogin() {
     history("/sign-up");
   }
 
@@ -17,11 +20,11 @@ export default function Header() {
         <button
           type="button"
           className="btn btn-primary mr-3"
-          onClick={handleClick}
+          onClick={handleLogin}
         >
           S'inscrire
         </button>
-        <button type="button" className="btn btn-danger mr-3">
+        <button type="button" className="btn btn-danger mr-3" onClick={() => dispatch(logout())}>
           Se déconnecter
         </button>
         <button type="button" className="btn btn-primary mr-3">
