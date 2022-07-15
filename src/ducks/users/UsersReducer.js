@@ -1,37 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const isConnected = !!localStorage.getItem('accessToken')
+const isConnected = !!localStorage.getItem("accessToken");
 const initialState = {
   count: 0,
-  data:  [],
+  data: [],
   isLoading: false,
   isConnected,
-  errors: []
+  errors: [],
 };
-
 
 export const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    login: (state) => {state.isLoading = true;},
+    login: (state) => {
+      state.isLoading = true;
+    },
     loginSuccess: (state, action) => {
       state.isLoading = false;
       state.isConnected = true;
-      localStorage.setItem('accessToken', action.payload.token)
+      localStorage.setItem("accessToken", action.payload.token);
     },
-    loginFailure: (state, action)  => {
+    loginFailure: (state, action) => {
       state.isLoading = false;
       state.errors = action.payload.errors;
     },
-    signUp: (state) => {state.isLoading = true;},
+    signUp: (state) => {
+      state.isLoading = true;
+    },
     logout: (state) => {
-      localStorage.removeItem('accessToken')
+      localStorage.removeItem("accessToken");
       state.isLoading = true;
       state.isConnected = false;
     },
-    userSuccess: (state) => { state.isLoading = false;},
-    userFailure: (state) => { state.isLoading = false;},
+    userSuccess: (state) => {
+      state.isLoading = false;
+    },
+    userFailure: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { logout } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
-export default function Header() {
+export default function Header({ isConnected }) {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,25 +17,41 @@ export default function Header() {
     <StyledHeader>
       <div className="font-weight-bold">FUDOKEA</div>
       <div>
-        <button
-          type="button"
-          className="btn btn-primary mr-3"
-          onClick={handleLogin}
-        >
-          S'inscrire
-        </button>
-        <button type="button" className="btn btn-danger mr-3" onClick={() => dispatch(logout())}>
-          Se déconnecter
-        </button>
-        <button type="button" className="btn btn-primary mr-3" onClick={() => navigate('/login')}>
-          Se connecter
-        </button>
-        <span style={{ marginRight: "10px" }}>
-          <FontAwesomeIcon icon={faUser} />
-        </span>
-        <span style={{ marginRight: "10px" }}>
-          <FontAwesomeIcon icon={faGear} />
-        </span>
+        {!isConnected && (
+          <>
+            <button
+              type="button"
+              className="btn btn-primary mr-3"
+              onClick={handleLogin}
+            >
+              S'inscrire
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary mr-3"
+              onClick={() => navigate("/login")}
+            >
+              Se connecter
+            </button>
+          </>
+        )}
+        {isConnected && (
+          <>
+            <button
+              type="button"
+              className="btn btn-danger mr-3"
+              onClick={() => dispatch(logout())}
+            >
+              Se déconnecter
+            </button>
+            <span style={{ marginRight: "10px" }}>
+              <FontAwesomeIcon icon={faUser} />
+            </span>
+            <span style={{ marginRight: "10px" }}>
+              <FontAwesomeIcon icon={faGear} />
+            </span>
+          </>
+        )}
       </div>
     </StyledHeader>
   );

@@ -7,23 +7,26 @@ export default function Login() {
   const inputs = useRef([]);
   const dispatch = useDispatch();
 
-  const addinputs = el => {
-    if(el && !inputs.current.includes(el)) {
-      inputs.current.push(el)
+  const addinputs = (el) => {
+    if (el && !inputs.current.includes(el)) {
+      inputs.current.push(el);
     }
-  }
+  };
   const formRef = useRef();
 
-  const handleForm = e => {
-    e.preventDefault()
+  const handleForm = (e) => {
+    e.preventDefault();
     dispatch(
-      login({ email: inputs.current[0].value, password: inputs.current[1].value})
-    )
-  }
+      login({
+        email: inputs.current[0].value,
+        password: inputs.current[1].value,
+      })
+    );
+  };
 
   return (
     <div className="container">
-      <div className="row" style={{ justifyContent: 'center'}}>
+      <div className="row" style={{ justifyContent: "center" }}>
         <div className="col-sm-4">
           <div className="card">
             <div className="card-body">
@@ -54,7 +57,9 @@ export default function Login() {
                   />
                 </div>
                 <p className="text-danger m-t">Validation</p>
-                <button type="submit" className="btn btn-primary">Se connecter</button>
+                <button type="submit" className="btn btn-primary">
+                  Se connecter
+                </button>
               </form>
             </div>
           </div>

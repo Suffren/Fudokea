@@ -1,29 +1,28 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import createSagaMiddleware from 'redux-saga'
-import { createRouterMiddleware, ReduxRouterState} from '@lagunovsky/redux-react-router'
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
+import {
+  createRouterMiddleware,
+  ReduxRouterState,
+} from "@lagunovsky/redux-react-router";
 
-import { browserHistory } from './history'
-import rootReducer from './reducers'
-import rootSaga from './ducks/users/saga'
+import { browserHistory } from "./history";
+import rootReducer from "./reducers";
+import rootSaga from "./ducks/users/saga";
 
-const routerMiddleware = createRouterMiddleware(browserHistory)
+const routerMiddleware = createRouterMiddleware(browserHistory);
 export default function configureStore(initialState) {
-
   // create the saga middleware
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware, routerMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
   const enhancers = [
     middlewareEnhancer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__(),
   ];
   const composedEnhancers = compose(...enhancers);
 
-  const store = createStore(
-    rootReducer,
-    initialState,
-    composedEnhancers,
-  );
+  const store = createStore(rootReducer, initialState, composedEnhancers);
   sagaMiddleware.run(rootSaga);
 
   return store;

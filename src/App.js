@@ -9,21 +9,28 @@ import Sidebar from "./components/Sidebar";
 import SignUp from "./containers/SignUp";
 import Header from "./containers/Header";
 import Login from "./containers/Login";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const isConnected = useSelector((state) => state.users.isConnected);
 
   return (
     <div className="App">
-      <Header />
+      <Header isConnected={isConnected} />
       <div id="page">
-        <Sidebar isConnected={isConnected} />
+        {isConnected && <Sidebar />}
         <Routes>
-          <Route path="/" element={<History />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="tips" element={<Tips />} />
-          <Route path="tips/:tipId" element={<Tip />} />
+          <Route exact path="/sign-up" element={<SignUp />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route
+            exact
+            path="/"
+            element={<PrivateRoute isConnected={isConnected} />}
+          >
+            <Route exact path="/" element={<History />} />
+            <Route exact path="tips" element={<Tips />} />
+            <Route exact path="tips/:tipId" element={<Tip />} />
+          </Route>
           <Route
             path="*"
             element={

@@ -3,28 +3,29 @@ import { signUp } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
-  
   const isLoading = useSelector((state) => state.users.isLoading);
   const inputs = useRef([]);
   const dispatch = useDispatch();
 
-  const addinputs = el => {
-    if(el && !inputs.current.includes(el)) {
-      inputs.current.push(el)
+  const addinputs = (el) => {
+    if (el && !inputs.current.includes(el)) {
+      inputs.current.push(el);
     }
-  }
+  };
 
-  const handleForm = e => {
-    e.preventDefault()
+  const handleForm = (e) => {
+    e.preventDefault();
     dispatch(
-      signUp({ email: inputs.current[0].value, password: inputs.current[1].value})
-    )
-  }
+      signUp({
+        email: inputs.current[0].value,
+        password: inputs.current[1].value,
+      })
+    );
+  };
 
   return (
     <div className="container">
-      loading: {isLoading}
-      <div className="row" style={{ justifyContent: 'center'}}>
+      <div className="row" style={{ justifyContent: "center" }}>
         <div className="col-sm-4">
           <div className="card">
             <div className="card-body">
@@ -68,7 +69,9 @@ export default function SignUp() {
                   />
                 </div>
                 <p className="text-danger m-t">Validation</p>
-                <button type="submit" className="btn btn-primary">Valider</button>
+                <button type="submit" className="btn btn-primary">
+                  S'inscrire
+                </button>
               </form>
             </div>
           </div>

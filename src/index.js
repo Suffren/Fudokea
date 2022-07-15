@@ -1,8 +1,8 @@
 import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
-import { ReduxRouter } from '@lagunovsky/redux-react-router';
-import { browserHistory } from './history';
+import { ReduxRouter } from "@lagunovsky/redux-react-router";
+import { browserHistory } from "./history";
 
 import "./index.css";
 import App from "./App";
@@ -18,9 +18,8 @@ ReactDOM.render(
         history={browserHistory}
         store={store}
         selector={routerSelector}
-        children={
-        <App/>
-        }/>
+        children={<App />}
+      />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
