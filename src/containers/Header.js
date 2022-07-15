@@ -6,11 +6,11 @@ import { logout } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Header() {
-  let history = useNavigate();
+  let navigate = useNavigate();
   const dispatch = useDispatch();
 
   function handleLogin() {
-    history("/sign-up");
+    navigate("/sign-up");
   }
 
   return (
@@ -27,7 +27,7 @@ export default function Header() {
         <button type="button" className="btn btn-danger mr-3" onClick={() => dispatch(logout())}>
           Se déconnecter
         </button>
-        <button type="button" className="btn btn-primary mr-3" onClick={() => history('/login')}>
+        <button type="button" className="btn btn-primary mr-3" onClick={() => navigate('/login')}>
           Se connecter
         </button>
         <span style={{ marginRight: "10px" }}>

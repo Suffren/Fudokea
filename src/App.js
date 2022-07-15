@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Tips from "./containers/Tips";
 import Tip from "./components/Tip";
@@ -10,11 +11,13 @@ import Header from "./containers/Header";
 import Login from "./containers/Login";
 
 function App() {
+  const isConnected = useSelector((state) => state.users.isConnected);
+
   return (
     <div className="App">
       <Header />
       <div id="page">
-        <Sidebar />
+        <Sidebar isConnected={isConnected} />
         <Routes>
           <Route path="/" element={<History />} />
           <Route path="/sign-up" element={<SignUp />} />

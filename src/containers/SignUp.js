@@ -3,6 +3,7 @@ import { signUp } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
+  
   const isLoading = useSelector((state) => state.users.isLoading);
   const inputs = useRef([]);
   const dispatch = useDispatch();

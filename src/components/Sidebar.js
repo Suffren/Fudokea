@@ -1,15 +1,15 @@
 import { NavLink } from "react-router-dom";
-
+import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCarrot, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "styled-components";
 import Tips from "../containers/Tips";
 
-export default function Sidebar() {
+export default function Sidebar({isConnected}) {
   return (
     <StyledSidebar>
-      <StyledUl>
+      {isConnected && (<StyledUl>
         <li>
           <span style={{ marginRight: "20px" }}>
             <FontAwesomeIcon icon={faCarrot} />
@@ -33,7 +33,7 @@ export default function Sidebar() {
             Tips
           </NavLink>
         </li>
-      </StyledUl>
+      </StyledUl>)}
     </StyledSidebar>
   );
 }

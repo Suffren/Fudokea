@@ -1,5 +1,5 @@
 import { call, put, takeEvery, all, takeLatest } from 'redux-saga/effects';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import {
   login,
   loginSuccess,
@@ -9,6 +9,7 @@ import {
   userSuccess,
   userFailure,
 } from "./UsersReducer";
+import { push } from '@lagunovsky/redux-react-router';
 import { reduxSagaFirebase } from "../../firebase.config";
 const authProvider = new firebase.auth.GoogleAuthProvider()
 
@@ -19,7 +20,7 @@ function* loginSaga(action) {
     const data = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, email, password)
 
     yield put(loginSuccess(data))
-    yield put(loginSuccess(data))
+    yield put(push('/'))
   }
   catch(error) {
     yield put(loginFailure(error))
