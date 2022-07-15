@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   count: 0,
-  data:  []
+  data:  [],
+  isLoading: false,
+  isConnected: true
 };
 
 export const userSlice = createSlice({
@@ -10,8 +12,12 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state) => {state.isLoading = true;},
-    loginSuccess: (state) => {},
-    loginFailure: (state) => {},
+    loginSuccess: (state) => {
+      state.isLoading = false;
+      state.isConnected = true;
+    },
+    loginFailure: (state) => {state.isLoading = false;},
+    signUp: (state) => {state.isLoading = true;},
     logout: (state) => {state.isLoading = true;},
     userSuccess: (state) => { state.isLoading = false;},
     userFailure: (state) => { state.isLoading = false;},
@@ -22,6 +28,7 @@ export const {
   login,
   loginSuccess,
   loginFailure,
+  signUp,
   logout,
   userSuccess,
   userFailure,

@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { login } from "../ducks/users/UsersReducer";
+import { useRef } from "react";
+import { signUp } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
@@ -16,7 +16,7 @@ export default function SignUp() {
   const handleForm = e => {
     e.preventDefault()
     dispatch(
-      login({ email: inputs.current[0].value, password: inputs.current[1].value})
+      signUp({ email: inputs.current[0].value, password: inputs.current[1].value})
     )
   }
 
@@ -46,7 +46,7 @@ export default function SignUp() {
                   <label htmlFor="signUpPassword">Mot de passe</label>
                   <input
                     name="password"
-                    type="type"
+                    type="password"
                     className="form-control"
                     id="signUpPassword"
                     ref={addinputs}
@@ -59,7 +59,7 @@ export default function SignUp() {
                   </label>
                   <input
                     name="repeatPassword"
-                    type="type"
+                    type="password"
                     className="form-control"
                     id="repeatPassword"
                     ref={addinputs}

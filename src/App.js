@@ -7,6 +7,7 @@ import History from "./containers/History";
 import Sidebar from "./components/Sidebar";
 import SignUp from "./containers/SignUp";
 import Header from "./containers/Header";
+import Login from "./containers/Login";
 
 function App() {
   return (
@@ -14,10 +15,10 @@ function App() {
       <Header />
       <div id="page">
         <Sidebar />
-
         <Routes>
           <Route path="/" element={<History />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route path="tips" element={<Tips />} />
           <Route path="tips/:tipId" element={<Tip />} />
           <Route

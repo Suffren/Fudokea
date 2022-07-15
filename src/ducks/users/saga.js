@@ -4,6 +4,7 @@ import {
   login,
   loginSuccess,
   loginFailure,
+  signUp,
   logout,
   userSuccess,
   userFailure,
@@ -13,10 +14,11 @@ const authProvider = new firebase.auth.GoogleAuthProvider()
 
 function* loginSaga(action) {
   const { email, password } = action.payload;
-    
+
   try {
-    const data = yield call(reduxSagaFirebase.auth.createUserWithEmailAndPassword, email, password)
-    
+    const data = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, email, password)
+
+    yield put(loginSuccess(data))
     yield put(loginSuccess(data))
   }
   catch(error) {
@@ -27,7 +29,6 @@ function* loginSaga(action) {
 function* logoutSaga() {
   try {
     const data = yield call(reduxSagaFirebase.auth.signOut)
-    console.log('out', data)
     
     yield put(userSuccess(data))
   }
@@ -36,9 +37,23 @@ function* logoutSaga() {
   }
 }
 
+function* signUpSaga(action) {
+  const { email, password } = action.payload;
+  try {
+    const data = yield call(reduxSagaFirebase.auth.createUserWithEmailAndPassword, email, password)
+
+    yield put(userSuccess(data))
+  }
+  catch(error) {
+    yield put(userFailure(error))
+  }
+}
+
+
 export default function* rootSaga() {
   yield all([
     takeEvery(login.type, loginSaga),
     takeLatest(logout.type, logoutSaga),
+    takeLatest(signUp.type, signUpSaga),
   ])
 }
