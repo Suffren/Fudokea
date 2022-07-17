@@ -4,7 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Login() {
   const isLoading = useSelector((state) => state.users.isLoading);
+  const error = useSelector((state) => state.users.error);
   const inputs = useRef([]);
+  const formRef = useRef();
   const dispatch = useDispatch();
 
   const addinputs = (el) => {
@@ -12,7 +14,6 @@ export default function Login() {
       inputs.current.push(el);
     }
   };
-  const formRef = useRef();
 
   const handleForm = (e) => {
     e.preventDefault();
@@ -56,7 +57,7 @@ export default function Login() {
                     required
                   />
                 </div>
-                <p className="text-danger m-t">Validation</p>
+                {error && <p className="text-danger m-t">{error}</p>}
                 <button type="submit" className="btn btn-primary">
                   Se connecter
                 </button>

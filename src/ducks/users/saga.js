@@ -50,6 +50,7 @@ function* signUpSaga(action) {
     );
 
     yield put(userSuccess(data));
+    yield put(push("/"));
   } catch (error) {
     yield put(userFailure(error));
   }

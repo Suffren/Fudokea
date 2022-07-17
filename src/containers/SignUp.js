@@ -1,10 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { signUp } from "../ducks/users/UsersReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
   const isLoading = useSelector((state) => state.users.isLoading);
+  const storedError = useSelector((state) => state.users.error);
+  const [error, setError] = useState();
   const inputs = useRef([]);
+  const formRef = useRef();
   const dispatch = useDispatch();
 
   const addinputs = (el) => {
@@ -13,14 +16,22 @@ export default function SignUp() {
     }
   };
 
+  useEffect(() => {
+    if(storedError) setError(storedError)
+  }, [storedError]);
+
   const handleForm = (e) => {
     e.preventDefault();
-    dispatch(
-      signUp({
-        email: inputs.current[0].value,
-        password: inputs.current[1].value,
-      })
-    );
+    if(inputs.current[1].value !== inputs.current[2].value) {
+      setError('Les mots de passe doivent être identiques')
+    } else {
+      dispatch(
+        signUp({
+          email: inputs.current[0].value,
+          password: inputs.current[1].value,
+        })
+      );
+    }
   };
 
   return (
@@ -32,7 +43,7 @@ export default function SignUp() {
               <h5 className="card-title">Inscrivez-vous</h5>
             </div>
             <div className="card-body">
-              <form onSubmit={handleForm}>
+              <form onSubmit={handleForm} ref={formRef}>
                 <div className="form-group mb-3">
                   <label htmlFor="signUpEmail">Adresse email</label>
                   <input
@@ -68,7 +79,7 @@ export default function SignUp() {
                     required
                   />
                 </div>
-                <p className="text-danger m-t">Validation</p>
+                {error && <p className="text-danger m-t">{error}</p>}
                 <button type="submit" className="btn btn-primary">
                   S'inscrire
                 </button>
