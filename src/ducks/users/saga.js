@@ -8,7 +8,7 @@ import {
   logout,
   userSuccess,
   userFailure,
-} from "./UsersReducer";
+} from "./reducer";
 import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";
 const authProvider = new firebase.auth.GoogleAuthProvider();
@@ -56,7 +56,7 @@ function* signUpSaga(action) {
   }
 }
 
-export default function* rootSaga() {
+export default function* usersSaga() {
   yield all([
     takeEvery(login.type, loginSaga),
     takeLatest(logout.type, logoutSaga),

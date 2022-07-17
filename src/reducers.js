@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { createRouterReducer } from "@lagunovsky/redux-react-router";
 import { browserHistory } from "./history";
-import TipsReducer from "./ducks/TipsReducer";
+import TipsReducer from "./ducks/Tips/reducer";
 import FoodsReducer from "./ducks/FoodsReducer";
-import UsersReducer from "./ducks/users/UsersReducer";
+import UsersReducer from "./ducks/users/reducer";
 
 const rootReducer = combineReducers({
   router: createRouterReducer(browserHistory),

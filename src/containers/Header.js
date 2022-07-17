@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faGear } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { logout } from "../ducks/users/UsersReducer";
-import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../ducks/users/reducer";
+import { useDispatch } from "react-redux";
 
 export default function Header({ isConnected }) {
   let navigate = useNavigate();

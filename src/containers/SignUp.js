@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { signUp } from "../ducks/users/UsersReducer";
+import { signUp } from "../ducks/users/reducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function SignUp() {
@@ -17,13 +17,13 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    if(storedError) setError(storedError)
+    if (storedError) setError(storedError);
   }, [storedError]);
 
   const handleForm = (e) => {
     e.preventDefault();
-    if(inputs.current[1].value !== inputs.current[2].value) {
-      setError('Les mots de passe doivent être identiques')
+    if (inputs.current[1].value !== inputs.current[2].value) {
+      setError("Les mots de passe doivent être identiques");
     } else {
       dispatch(
         signUp({

@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { login } from "../ducks/users/UsersReducer";
+import { login } from "../ducks/users/reducer";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Login() {

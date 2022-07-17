@@ -16,20 +16,30 @@ const initialState = {
       read: false,
     },
   ],
+  isLoading: false,
+  error: "",
 };
 
 export const tipSlice = createSlice({
   name: "tips",
   initialState,
   reducers: {
-    addTip: (state, action) => {
+    addTip: state => {
+      console.log('tip', state)
+      state.isLoading = true;
+    },
+    tipSuccess: (state, action) => {
       state.count += 1;
       const newTips = { ...action.payload, read: false, id: state.data.length };
       state.data.push(newTips);
+      state.isLoading = false;
+    },
+    tipFailure: state => {
+      state.isLoading = true;
     },
   },
 });
 
-export const { addTip } = tipSlice.actions;
+export const { addTip, tipSuccess, tipFailure } = tipSlice.actions;
 
 export default tipSlice.reducer;

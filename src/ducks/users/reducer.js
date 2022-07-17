@@ -6,7 +6,7 @@ const initialState = {
   data: [],
   isLoading: false,
   isConnected,
-  error: '',
+  error: "",
 };
 
 export const userSlice = createSlice({
@@ -39,7 +39,7 @@ export const userSlice = createSlice({
       state.isLoading = false;
     },
     userFailure: (state, action) => {
-      console.log('action', action)
+      console.log("action", action);
       state.isLoading = false;
       state.error = action.payload.message;
     },

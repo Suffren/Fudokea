@@ -1,10 +1,10 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Tips from "./containers/Tips";
 import Tip from "./components/Tip";
-import History from "./containers/History";
+import Tips from "./containers/Tips";
+import TipCreate from "./containers/TipCreate";
+import FoodsHistory from "./containers/FoodsHistory";
 import Sidebar from "./components/Sidebar";
 import SignUp from "./containers/SignUp";
 import Header from "./containers/Header";
@@ -27,9 +27,10 @@ function App() {
             path="/"
             element={<PrivateRoute isConnected={isConnected} />}
           >
-            <Route exact path="/" element={<History />} />
+            <Route exact path="/" element={<FoodsHistory />} />
             <Route exact path="tips" element={<Tips />} />
             <Route exact path="tips/:tipId" element={<Tip />} />
+            <Route exact path="tips/create" element={<TipCreate />} />
           </Route>
           <Route
             path="*"
