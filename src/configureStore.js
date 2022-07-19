@@ -4,7 +4,7 @@ import { createRouterMiddleware } from "@lagunovsky/redux-react-router";
 
 import { browserHistory } from "./history";
 import rootReducer from "./reducers";
-import rootSaga from "./ducks/Tips/saga";
+import rootSaga from "./RootSaga";
 
 export default function configureStore(initialState) {
   const routerMiddleware = createRouterMiddleware(browserHistory);

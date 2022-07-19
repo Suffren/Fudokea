@@ -19,12 +19,11 @@ export const userSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isLoading = false;
       state.isConnected = true;
-      state.error = "";
       localStorage.setItem("accessToken", action.payload.token);
     },
     loginFailure: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload.message;
+      state.error = { message: action.payload.message };
     },
     signUp: (state) => {
       state.isLoading = true;
@@ -35,13 +34,11 @@ export const userSlice = createSlice({
       state.isConnected = false;
     },
     userSuccess: (state) => {
-      state.error = "";
       state.isLoading = false;
     },
     userFailure: (state, action) => {
-      console.log("action", action);
       state.isLoading = false;
-      state.error = action.payload.message;
+      state.error = { message: action.payload.message };
     },
   },
 });

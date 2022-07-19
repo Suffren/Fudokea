@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 export default function SignUp() {
   const isLoading = useSelector((state) => state.users.isLoading);
   const storedError = useSelector((state) => state.users.error);
-  const [error, setError] = useState();
+  const [error, setError] = useState("");
   const inputs = useRef([]);
   const formRef = useRef();
   const dispatch = useDispatch();
@@ -17,10 +17,12 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    if (storedError) setError(storedError);
+    if(storedError && storedError.message)
+      setError(storedError.message);
   }, [storedError]);
 
-  const handleForm = (e) => {
+  const handleSubmit = (e) => {
+    setError("");
     e.preventDefault();
     if (inputs.current[1].value !== inputs.current[2].value) {
       setError("Les mots de passe doivent être identiques");
@@ -43,7 +45,7 @@ export default function SignUp() {
               <h5 className="card-title">Inscrivez-vous</h5>
             </div>
             <div className="card-body">
-              <form onSubmit={handleForm} ref={formRef}>
+              <form onSubmit={handleSubmit} ref={formRef}>
                 <div className="form-group mb-3">
                   <label htmlFor="signUpEmail">Adresse email</label>
                   <input
@@ -80,7 +82,7 @@ export default function SignUp() {
                   />
                 </div>
                 {error && <p className="text-danger m-t">{error}</p>}
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" disabled={isLoading}>
                   S'inscrire
                 </button>
               </form>

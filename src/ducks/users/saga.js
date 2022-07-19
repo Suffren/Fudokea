@@ -42,6 +42,7 @@ function* logoutSaga() {
 
 function* signUpSaga(action) {
   const { email, password } = action.payload;
+
   try {
     const data = yield call(
       reduxSagaFirebase.auth.createUserWithEmailAndPassword,

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Login() {
   const isLoading = useSelector((state) => state.users.isLoading);
-  const error = useSelector((state) => state.users.error);
+  const error = useSelector((state) => state.users.error.message);
   const inputs = useRef([]);
   const formRef = useRef();
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function Login() {
     }
   };
 
-  const handleForm = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
       login({
@@ -34,7 +34,7 @@ export default function Login() {
               <h5 className="card-title">Inscrivez-vous</h5>
             </div>
             <div className="card-body">
-              <form onSubmit={handleForm} ref={formRef}>
+              <form onSubmit={handleSubmit} ref={formRef}>
                 <div className="form-group mb-3">
                   <label htmlFor="loginEmail">Adresse email</label>
                   <input
@@ -58,7 +58,7 @@ export default function Login() {
                   />
                 </div>
                 {error && <p className="text-danger m-t">{error}</p>}
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" disabled={isLoading}>
                   Se connecter
                 </button>
               </form>
