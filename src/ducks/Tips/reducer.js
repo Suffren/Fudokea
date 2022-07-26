@@ -25,13 +25,12 @@ export const tipSlice = createSlice({
   initialState,
   reducers: {
     addTip: state => {
-      console.log('tip', state)
       state.isLoading = true;
     },
     tipSuccess: (state, action) => {
       state.count += 1;
-      const newTips = { ...action.payload, read: false, id: state.data.length };
-      state.data.push(newTips);
+      const tip = { ...action.payload };
+      state.data.push(tip);
       state.isLoading = false;
     },
     tipFailure: state => {

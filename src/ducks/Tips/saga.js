@@ -8,10 +8,21 @@ import {
 import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";
 const authProvider = new firebase.auth.GoogleAuthProvider();
-console.log('tip', addTip)
+
 function* createTipSaga(action) {
-  const tip = action.payload;
+  const tip = {
+    ...action.payload,
+    read: false,
+  };
+
   try {
+    const data = yield call(reduxSagaFirebase.database.create, 'tips', tip);
+    yield put(tipSuccess({...tip, id: data}));
+    yield put(push("/tips"));
+  } catch (error) {
+    yield put(tipFailure(error));
+  }
+}
 
     console.log('tip', {
       ...tip,
