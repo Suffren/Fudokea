@@ -28,7 +28,6 @@ export default function Sidebar() {
           <NavLink
             className={({ isActive }) => (isActive ? "is-active" : "")}
             to="/Tips"
-            component={Tips}
           >
             Tips
           </NavLink>
