@@ -24,7 +24,7 @@ export const tipSlice = createSlice({
   name: "tips",
   initialState,
   reducers: {
-    addTip: state => {
+    addTip: (state) => {
       state.isLoading = true;
     },
     tipSuccess: (state, action) => {
@@ -33,12 +33,25 @@ export const tipSlice = createSlice({
       state.data.push(tip);
       state.isLoading = false;
     },
-    tipFailure: state => {
+    tipFailure: (state) => {
+      state.isLoading = false;
+    },
+    getTips: (state) => {
       state.isLoading = true;
+    },
+    getTipsSuccess: (state, action) => {
+      const tips = Object.keys(action.payload).map((tipId) => ({
+        ...action.payload[tipId],
+        id: tipId,
+      }));
+      state.data = state.data.concat(tips);
+      state.count = initialState.count + tips.length;
+      state.isLoading = false;
     },
   },
 });
 
-export const { addTip, tipSuccess, tipFailure } = tipSlice.actions;
+export const { addTip, tipSuccess, tipFailure, getTips, getTipsSuccess } =
+  tipSlice.actions;
 
 export default tipSlice.reducer;

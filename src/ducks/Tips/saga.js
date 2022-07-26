@@ -4,6 +4,8 @@ import {
   addTip,
   tipSuccess,
   tipFailure,
+  getTipsSuccess,
+  getTips,
 } from "./reducer";
 import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";
@@ -16,28 +18,20 @@ function* createTipSaga(action) {
   };
 
   try {
-    const data = yield call(reduxSagaFirebase.database.create, 'tips', tip);
-    yield put(tipSuccess({...tip, id: data}));
+    const data = yield call(reduxSagaFirebase.database.create, "tips", tip);
+    yield put(tipSuccess({ ...tip, id: data }));
     yield put(push("/tips"));
   } catch (error) {
     yield put(tipFailure(error));
   }
 }
 
-    console.log('tip', {
-      ...tip,
-      read: false,
-    }, action)
-    const data = yield call(reduxSagaFirebase.database.create, 'tips', {
-      ...tip,
-      read: false,
-    });
+function* getTipsSaga(action) {
+  try {
+    const tips = yield call(reduxSagaFirebase.database.read, "tips");
 
-    console.log('sucees tip', tip, data)
-    yield put(tipSuccess(data));
-    yield put(push("/"));
+    yield put(getTipsSuccess(tips));
   } catch (error) {
-    console.log('fail tip', tip, error)
     yield put(tipFailure(error));
   }
 }
@@ -45,5 +39,6 @@ function* createTipSaga(action) {
 export default function* tipsSaga() {
   yield all([
     takeEvery(addTip.type, createTipSaga),
+    takeEvery(getTips.type, getTipsSaga),
   ]);
 }

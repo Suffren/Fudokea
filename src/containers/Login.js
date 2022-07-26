@@ -58,7 +58,11 @@ export default function Login() {
                   />
                 </div>
                 {error && <p className="text-danger m-t">{error}</p>}
-                <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={isLoading}
+                >
                   Se connecter
                 </button>
               </form>

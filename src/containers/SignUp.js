@@ -17,8 +17,7 @@ export default function SignUp() {
   };
 
   useEffect(() => {
-    if(storedError && storedError.message)
-      setError(storedError.message);
+    if (storedError && storedError.message) setError(storedError.message);
   }, [storedError]);
 
   const handleSubmit = (e) => {
@@ -82,7 +81,11 @@ export default function SignUp() {
                   />
                 </div>
                 {error && <p className="text-danger m-t">{error}</p>}
-                <button type="submit" className="btn btn-primary" disabled={isLoading}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={isLoading}
+                >
                   S'inscrire
                 </button>
               </form>
