@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getTips } from "../ducks/Tips/reducer";
+import { getTips } from "../ducks/tips/reducer";
 
 export default function Tips() {
   const count = useSelector((state) => state.tips.count);

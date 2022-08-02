@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { addTip } from "../ducks/Tips/reducer";
+import { addTip } from "../ducks/tips/reducer";
 
 export default function TipsCreate() {
   const dispatch = useDispatch();

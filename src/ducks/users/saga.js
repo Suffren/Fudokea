@@ -59,7 +59,7 @@ function* signUpSaga(action) {
 
 export default function* usersSaga() {
   yield all([
-    takeEvery(login.type, loginSaga),
+    takeLatest(login.type, loginSaga),
     takeLatest(logout.type, logoutSaga),
     takeLatest(signUp.type, signUpSaga),
   ]);
