@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { createRouterReducer } from "@lagunovsky/redux-react-router";
 import { browserHistory } from "./history";
 import TipsReducer from "./ducks/tips/reducer";
-import FoodsReducer from "./ducks/FoodsReducer";
+import FoodsReducer from "./ducks/foods/reducer";
 import UsersReducer from "./ducks/users/reducer";
 
 const rootReducer = combineReducers({
