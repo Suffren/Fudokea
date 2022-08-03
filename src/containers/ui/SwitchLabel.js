@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 import {
   faChevronRight,
   faChevronLeft,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
 function SwitchLabel({
   handleLeftClick,
@@ -19,53 +19,51 @@ function SwitchLabel({
 
   return (
     <>
-        <StyledCarousel>
-          <StyledCarouselItems
-            transition={withTransition}
-            style={{
-              width: `${100 * items.length}%`,
-              transform: `translateX(${translate}%)`,
+      <StyledCarousel>
+        <StyledCarouselItems
+          transition={withTransition}
+          style={{
+            width: `${100 * items.length}%`,
+            transform: `translateX(${translate}%)`,
+          }}
+        >
+          {items.map((item) => (
+            <StyledCarouselItem key={item.name}>
+              <label htmlFor={item.name}>{item.name}</label>
+            </StyledCarouselItem>
+          ))}
+        </StyledCarouselItems>
+        <StyledCarouselArrows>
+          <div
+            onClick={() => {
+              setIndex((prevCount) =>
+                prevCount === 0 ? items.length - 1 : prevCount - 1
+              );
+              setTranslate(
+                index === 0
+                  ? translate - ((items.length - 1) / items.length) * 100
+                  : translate + 100 / items.length
+              );
+              handleLeftClick(index);
             }}
           >
-            {items.map(item => (
-              <StyledCarouselItem key={item.name}>
-                <label htmlFor={item.name}>{item.name}</label>
-              </StyledCarouselItem>
-            ))}
-          </StyledCarouselItems>
-          <StyledCarouselArrows>
-            <div
-              onClick={() => {
-                setIndex(prevCount =>
-                  prevCount === 0 ? items.length - 1 : prevCount - 1,
-                );
-                setTranslate(
-                  index === 0
-                    ? translate - ((items.length - 1) / items.length) * 100
-                    : translate + 100 / items.length,
-                );
-                handleLeftClick(index);
-              }}
-            >
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </div>
-            <div
-              onClick={() => {
-                setIndex(prevCount =>
-                  prevCount === items.length - 1 ? 0 : prevCount + 1,
-                );
-                setTranslate(
-                  index === items.length - 1
-                    ? 0
-                    : translate - 100 / items.length,
-                );
-                handleRightClick(index);
-              }}
-            >
-              <FontAwesomeIcon icon={faChevronRight} />
-            </div>
-          </StyledCarouselArrows>
-        </StyledCarousel>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </div>
+          <div
+            onClick={() => {
+              setIndex((prevCount) =>
+                prevCount === items.length - 1 ? 0 : prevCount + 1
+              );
+              setTranslate(
+                index === items.length - 1 ? 0 : translate - 100 / items.length
+              );
+              handleRightClick(index);
+            }}
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </div>
+        </StyledCarouselArrows>
+      </StyledCarousel>
     </>
   );
 }

@@ -20,10 +20,17 @@ export const foodSlice = createSlice({
   name: "foods",
   initialState,
   reducers: {
+    getFood: (state) => {},
     getFoods: (state) => {},
+    addFood: (state) => {
+      state.isLoading = true;
+    },
+    foodSuccess: (state) => {},
+    foodFailure: (state) => {},
   },
 });
 
-export const { getFoods } = foodSlice.actions;
+export const { getFood, getFoods, addFood, foodSuccess, foodFailure } =
+  foodSlice.actions;
 
 export default foodSlice.reducer;

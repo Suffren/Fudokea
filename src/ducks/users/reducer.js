@@ -19,7 +19,7 @@ export const userSlice = createSlice({
     loginSuccess: (state, action) => {
       state.isLoading = false;
       state.isConnected = true;
-      localStorage.setItem("accessToken", action.payload.token);
+      localStorage.setItem("accessToken", action.payload.user.refreshToken);
     },
     loginFailure: (state, action) => {
       state.isLoading = false;

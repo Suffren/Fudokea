@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { addFood } from "../ducks/foods/reducer";
 
 function FoodsHistory() {
+  const dispatch = useDispatch();
   return (
     <StyledContent>
       <div className="card" style={{ width: "18rem" }}>
@@ -11,7 +14,14 @@ function FoodsHistory() {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <button className="btn btn-primary">Go somewhere</button>
+          <button
+            className="btn btn-primary"
+            onClick={() =>
+              dispatch(addFood({ title: "Ah", content: "oh !", level: 3 }))
+            }
+          >
+            Add food
+          </button>
         </div>
       </div>
     </StyledContent>
