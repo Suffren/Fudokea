@@ -25,7 +25,6 @@ function* createTipSaga(action) {
 }
 
 function* getTipsSaga(action) {
-
   try {
     const tips = yield call(reduxSagaFirebase.database.read, "tips");
 

@@ -13,7 +13,7 @@ function FoodsHistory() {
   const [showAddProduct, setShowAddProduct] = useState(false);
 
   function HandleAddProduct(product) {
-    dispatch(addFood({ ...product, scanned: false }))
+    dispatch(addFood({ ...product, scanned: false }));
   }
 
   return (
@@ -23,16 +23,15 @@ function FoodsHistory() {
           <StyledWeekHeader>
             <h5 className="card-title">Semaine 41</h5>
             <span>85 kg</span>
-            <FontAwesomeIcon icon={faPlus}  onClick={() => setShowAddProduct(true) } />
+            <FontAwesomeIcon
+              icon={faPlus}
+              onClick={() => setShowAddProduct(true)}
+            />
           </StyledWeekHeader>
-          <p className="card-text">
-            Beaucoup de dérapges, plein de fêtes
-          </p>
-          <p className="card-text">
-            3 trajets en vélotaff
-          </p>
+          <p className="card-text">Beaucoup de dérapges, plein de fêtes</p>
+          <p className="card-text">3 trajets en vélotaff</p>
           <div>
-          {showAddProduct && <AddProduct addProduct={HandleAddProduct} />}
+            {showAddProduct && <AddProduct addProduct={HandleAddProduct} />}
           </div>
         </div>
       </div>
@@ -59,6 +58,6 @@ const StyledWeekHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   & h5 {
-    margin: 0
+    margin: 0;
   }
 `;

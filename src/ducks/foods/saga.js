@@ -1,7 +1,7 @@
 import React from "react";
 
 import { call, put, takeEvery, all } from "redux-saga/effects";
-import {onAuthStateChanged} from "../../utils/auth";
+import { onAuthStateChanged } from "../../utils/auth";
 import {
   getFood,
   getFoods,
@@ -18,7 +18,7 @@ function* addFoodSaga(action) {
     const food = {
       ...action.payload,
       user_id: user.uid,
-      create_date: new Date().toUTCString()
+      create_date: new Date().toUTCString(),
     };
 
     const data = yield call(reduxSagaFirebase.database.create, "foods", food);
