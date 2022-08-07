@@ -1,4 +1,7 @@
+import React from "react";
+
 import { call, put, takeEvery, all } from "redux-saga/effects";
+import {onAuthStateChanged} from "../../utils/auth";
 import {
   getFood,
   getFoods,
@@ -10,12 +13,14 @@ import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";
 
 function* addFoodSaga(action) {
-  const food = {
-    ...action.payload,
-    userId: "4kZriIZZwrQ2AGOxIWbtfkvFZin2",
-  };
-
   try {
+    const user = yield call(onAuthStateChanged);
+    const food = {
+      ...action.payload,
+      user_id: user.uid,
+      create_date: new Date().toUTCString()
+    };
+
     const data = yield call(reduxSagaFirebase.database.create, "foods", food);
 
     yield put(foodSuccess({ ...food, id: data }));

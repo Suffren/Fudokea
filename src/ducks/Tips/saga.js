@@ -1,5 +1,4 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
-import firebase from "firebase";
 import {
   addTip,
   tipSuccess,
@@ -9,7 +8,6 @@ import {
 } from "./reducer";
 import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";
-const authProvider = new firebase.auth.GoogleAuthProvider();
 
 function* createTipSaga(action) {
   const tip = {
@@ -27,6 +25,7 @@ function* createTipSaga(action) {
 }
 
 function* getTipsSaga(action) {
+
   try {
     const tips = yield call(reduxSagaFirebase.database.read, "tips");
 

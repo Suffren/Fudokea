@@ -1,5 +1,4 @@
 import { call, put, takeEvery, all, takeLatest } from "redux-saga/effects";
-import firebase from "firebase";
 import {
   login,
   loginSuccess,
@@ -11,7 +10,6 @@ import {
 } from "./reducer";
 import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";
-const authProvider = new firebase.auth.GoogleAuthProvider();
 
 function* loginSaga(action) {
   const { email, password } = action.payload;

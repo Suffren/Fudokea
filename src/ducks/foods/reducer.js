@@ -1,21 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: [
-    {
-      id: 1,
-      title: "Coca",
-      content: "Sucre !",
-      level: 3,
-    },
-    {
-      id: 2,
-      title: "Courge",
-      content: "lègume",
-      level: 1,
-    },
-  ],
+  data: [],
+  count: 0
 };
+
+const weeks = [{
+  year: 2022,
+  number: 1,
+  weigth: 85,
+  comment: "None",
+  sport: "None",
+  consumed: [
+    { product: "Mars", nutri_score: 5, scanned: false, created_date: new Date().toUTCString()},
+  ]
+}]
+
 export const foodSlice = createSlice({
   name: "foods",
   initialState,
