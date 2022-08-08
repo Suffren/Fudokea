@@ -6,7 +6,7 @@ import { addFood } from "../ducks/foods/reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import AddProduct from "../components/AddProduct";
+import ProductInput from "../components/ProductInput";
 
 function FoodsHistory() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function FoodsHistory() {
 
   return (
     <StyledContent>
-      <div className="card">
+      <div className="card" style={{minWidth: '500px'}}>
         <div className="card-body">
           <StyledWeekHeader>
             <h5 className="card-title">Semaine 41</h5>
@@ -28,10 +28,10 @@ function FoodsHistory() {
               onClick={() => setShowAddProduct(true)}
             />
           </StyledWeekHeader>
-          <p className="card-text">Beaucoup de dérapges, plein de fêtes</p>
+          <p className="card-text">Beaucoup de dérapages, plein de fêtes</p>
           <p className="card-text">3 trajets en vélotaff</p>
           <div>
-            {showAddProduct && <AddProduct addProduct={HandleAddProduct} />}
+            {showAddProduct && <ProductInput addProduct={HandleAddProduct} />}
           </div>
         </div>
       </div>
@@ -49,7 +49,6 @@ const StyledContent = styled.div`
   flex-direction: column;
   & .card-text {
     padding-bottom: 15px;
-    border-bottom: 1px solid grey;
   }
 `;
 
