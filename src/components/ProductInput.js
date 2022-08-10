@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import DotButtons from "../ui/DotButtons";
 
 export default function ProductInput({ addProduct }) {
   const [productName, setProductName] = useState("");
@@ -23,20 +24,7 @@ export default function ProductInput({ addProduct }) {
           value={productName}
           onChange={(e) => setProductName(e.target.value)}
         />
-        <StyledUl>
-          <li
-            className={`btn btn-success ${nutriScore === "A" ? "active" : ""}`}
-            onClick={() => setNutriScore("A")}
-          ></li>
-          <li
-            className={`btn btn-warning ${nutriScore === "C" ? "active" : ""}`}
-            onClick={() => setNutriScore("C")}
-          ></li>
-          <li
-            className={`btn btn-danger ${nutriScore === "E" ? "active" : ""}`}
-            onClick={() => setNutriScore("E")}
-          ></li>
-        </StyledUl>
+        <DotButtons handleClick={setNutriScore} nutriScore={nutriScore} />
         <button className="btn btn-outline-secondary" onClick={handleSubmit}>+</button>
       </StyledInlineDiv>
       
@@ -50,22 +38,4 @@ export default function ProductInput({ addProduct }) {
 const StyledInlineDiv = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const StyledUl = styled.ul`
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-  & li {
-    padding: 0px;
-    margin: 5px;
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-    border: none;
-    &.active {
-      border: 2px solid lightgrey !important;
-    }
-  }
 `;

@@ -28,7 +28,7 @@ function FoodsHistory() {
               onClick={() => setShowAddProduct(true)}
             />
           </StyledWeekHeader>
-          <p className="card-text">Beaucoup de dérapages, plein de fêtes</p>
+          <p className="card-text mt-3">Beaucoup de dérapages, plein de fêtes</p>
           <p className="card-text">3 trajets en vélotaff</p>
           <div>
             {showAddProduct && <ProductInput addProduct={HandleAddProduct} />}
@@ -47,9 +47,6 @@ const StyledContent = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  & .card-text {
-    padding-bottom: 15px;
-  }
 `;
 
 const StyledWeekHeader = styled.div`
