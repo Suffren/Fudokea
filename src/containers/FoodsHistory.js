@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { addFood } from "../ducks/foods/reducer";
+import { addFood, getFoods } from "../ducks/foods/reducer";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -10,11 +10,18 @@ import ProductInput from "../components/ProductInput";
 
 function FoodsHistory() {
   const dispatch = useDispatch();
+  const foods = useSelector(state => state.foods.data);
   const [showAddProduct, setShowAddProduct] = useState(false);
 
   function HandleAddProduct(product) {
     dispatch(addFood({ ...product, scanned: false }));
   }
+
+  useEffect(()=> {
+    if(foods.length === 0) {
+      dispatch(getFoods())
+    }
+  }, [foods])
 
   return (
     <StyledContent>

@@ -27,13 +27,22 @@ export const foodSlice = createSlice({
   name: "foods",
   initialState,
   reducers: {
-    getFood: (state) => {},
-    getFoods: (state) => {},
+    getFood: (state) => {
+      state.isLoading = true;
+    },
+    getFoods: (state) => {
+      state.isLoading = true;
+    },
     addFood: (state) => {
       state.isLoading = true;
     },
-    foodSuccess: (state) => {},
-    foodFailure: (state) => {},
+    foodSuccess: (state, action) => {
+      state.data = action.payload;
+      state.isLoading = false;
+    },
+    foodFailure: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 

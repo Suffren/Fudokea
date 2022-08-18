@@ -6,7 +6,7 @@ export default function ProductInput({ addProduct }) {
   const [productName, setProductName] = useState("");
   const [nutriScore, setNutriScore] = useState("");
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     addProduct({ product: productName, nutri_score: nutriScore });
     setProductName("");
     setNutriScore("");

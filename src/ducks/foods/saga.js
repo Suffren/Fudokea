@@ -1,7 +1,8 @@
-import React from "react";
-
 import { call, put, takeEvery, all } from "redux-saga/effects";
 import { onAuthStateChanged } from "../../utils/auth";
+import firebase from 'firebase/app'
+import 'firebase/database'
+
 import {
   getFood,
   getFoods,
@@ -32,9 +33,20 @@ function* addFoodSaga(action) {
 
 function* getFoodSaga(action) {
   try {
-    const tips = yield call(reduxSagaFirebase.database.read, "tips");
+    const { id } = action.payload;
+    const food = yield call(reduxSagaFirebase.database.read, `foods/${id}`);
 
-    yield put(foodSuccess(tips));
+    yield put(foodSuccess(food));
+  } catch (error) {
+    yield put(foodFailure(error));
+  }
+}
+
+function* getFoodsSaga() {
+  try {
+    const foods = yield call(reduxSagaFirebase.database.read, "foods");
+
+    yield put(foodSuccess(foods));
   } catch (error) {
     yield put(foodFailure(error));
   }
@@ -44,5 +56,6 @@ export default function* tipsSaga() {
   yield all([
     takeEvery(getFood.type, getFoodSaga),
     takeEvery(addFood.type, addFoodSaga),
+    takeEvery(getFoods.type, getFoodsSaga),
   ]);
 }
