@@ -1,25 +1,23 @@
 import styled from "styled-components";
 
-function DotButtons({
-  handleClick,
-  nutriScore,
-}) {
+function DotButtons({ handleClick, nutriScore }) {
   return (
     <StyledUl>
       <li
-      className={`btn btn-success ${nutriScore === "A" ? "active" : ""}`}
-      onClick={() => handleClick("A")}
+        className={`btn btn-success ${nutriScore === "A" ? "active" : ""}`}
+        onClick={() => handleClick("A")}
       ></li>
       <li
-      className={`btn btn-warning ${nutriScore === "C" ? "active" : ""}`}
-      onClick={() => handleClick("C")}
+        className={`btn btn-warning ${nutriScore === "C" ? "active" : ""}`}
+        onClick={() => handleClick("C")}
       ></li>
       <li
-      className={`btn btn-danger ${nutriScore === "E" ? "active" : ""}`}
-      onClick={() => handleClick("E")}
+        className={`btn btn-danger ${nutriScore === "E" ? "active" : ""}`}
+        onClick={() => handleClick("E")}
       ></li>
     </StyledUl>
-  )}
+  );
+}
 
 export default DotButtons;
 

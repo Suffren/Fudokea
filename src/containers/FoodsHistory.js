@@ -7,25 +7,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import ProductInput from "../components/ProductInput";
+import Food from "../components/Food";
 
 function FoodsHistory() {
   const dispatch = useDispatch();
-  const foods = useSelector(state => state.foods.data);
+  const foods = useSelector((state) => state.foods.data);
   const [showAddProduct, setShowAddProduct] = useState(false);
 
   function HandleAddProduct(product) {
     dispatch(addFood({ ...product, scanned: false }));
   }
 
-  useEffect(()=> {
-    if(foods.length === 0) {
-      dispatch(getFoods())
+  useEffect(() => {
+    if (foods) {
+      dispatch(getFoods());
     }
-  }, [foods])
+  }, []);
 
   return (
     <StyledContent>
-      <div className="card" style={{minWidth: '500px'}}>
+      <div className="card" style={{ minWidth: "500px" }}>
         <div className="card-body">
           <StyledWeekHeader>
             <h5 className="card-title">Semaine 41</h5>
@@ -35,9 +36,17 @@ function FoodsHistory() {
               onClick={() => setShowAddProduct(true)}
             />
           </StyledWeekHeader>
-          <p className="card-text mt-3">Beaucoup de dérapages, plein de fêtes</p>
+          <p className="card-text mt-3">
+            Beaucoup de dérapages, plein de fêtes
+          </p>
           <p className="card-text">3 trajets en vélotaff</p>
           <div>
+            {foods.length > 0 &&
+              foods.map((food) => (
+                <div key={food.id}>
+                  <Food {...food} />
+                </div>
+              ))}
             {showAddProduct && <ProductInput addProduct={HandleAddProduct} />}
           </div>
         </div>

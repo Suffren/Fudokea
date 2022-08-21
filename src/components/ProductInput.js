@@ -25,9 +25,11 @@ export default function ProductInput({ addProduct }) {
           onChange={(e) => setProductName(e.target.value)}
         />
         <DotButtons handleClick={setNutriScore} nutriScore={nutriScore} />
-        <button className="btn btn-outline-secondary" onClick={handleSubmit}>+</button>
+        <button className="btn btn-outline-secondary" onClick={handleSubmit}>
+          +
+        </button>
       </StyledInlineDiv>
-      
+
       <small id="addProduct" className="form-text text-muted" hidden>
         Un produit ne doit pas contenir de caractère spécial
       </small>
