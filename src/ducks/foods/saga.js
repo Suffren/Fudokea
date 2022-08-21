@@ -1,14 +1,16 @@
 import { call, put, takeLatest, all } from "redux-saga/effects";
 import { onAuthStateChanged } from "../../utils/auth";
-import firebase from 'firebase/app'
-import 'firebase/database'
+import firebase from "firebase/app";
+import "firebase/database";
 
 import {
   getFood,
   getFoods,
   addFood,
   foodSuccess,
+  foodsSuccess,
   foodFailure,
+  foodsFailure,
 } from "./reducer";
 import { push } from "@lagunovsky/redux-react-router";
 import { reduxSagaFirebase } from "../../firebase.config";

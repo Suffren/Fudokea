@@ -37,16 +37,34 @@ export const foodSlice = createSlice({
       state.isLoading = true;
     },
     foodSuccess: (state, action) => {
-      state.data = action.payload;
+      state.data = state.data.concat(action.payload);
       state.isLoading = false;
     },
     foodFailure: (state) => {
       state.isLoading = false;
     },
+    foodsSuccess: (state, action) => {
+      const foods = Object.keys(action.payload).map((foodId) => ({
+        ...action.payload[foodId],
+        id: foodId,
+      }));
+      state.data = foods;
+      state.isLoading = false;
+    },
+    foodsFailure: (state) => {
+      state.isLoading = false;
+    },
   },
 });
 
-export const { getFood, getFoods, addFood, foodSuccess, foodFailure } =
-  foodSlice.actions;
+export const {
+  getFood,
+  getFoods,
+  addFood,
+  foodSuccess,
+  foodFailure,
+  foodsSuccess,
+  foodsFailure,
+} = foodSlice.actions;
 
 export default foodSlice.reducer;
