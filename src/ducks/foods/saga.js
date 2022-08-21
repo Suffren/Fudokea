@@ -21,7 +21,7 @@ function* addFoodSaga(action) {
     const food = {
       ...action.payload,
       user_id: user.uid,
-      create_date: new Date().toUTCString(),
+      create_date: new Date().getTime(),
     };
 
     const data = yield call(reduxSagaFirebase.database.create, "foods", food);
@@ -46,9 +46,17 @@ function* getFoodSaga(action) {
 
 function* getFoodsSaga() {
   try {
-    const foods = yield call(reduxSagaFirebase.database.read, "foods");
-
-    yield put(foodSuccess(foods));
+    //.limitToFirst(5),  .ref('user-posts/' + myUserId)
+    const foods = yield call(
+      reduxSagaFirebase.database.read,
+      firebase
+        .database()
+        .ref("foods")
+        .orderByChild("create_date")
+        .startAt(1660932000000)
+        .endAt(1661454480000)
+    );
+    yield put(foodsSuccess(foods));
   } catch (error) {
     yield put(foodFailure(error));
   }

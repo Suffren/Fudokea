@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   data: [],
-  count: 0,
 };
 
 const weeks = [
   {
+    created_date: new Date().toUTCString(),
     year: 2022,
     number: 1,
     weigth: 85,
@@ -22,7 +22,30 @@ const weeks = [
     ],
   },
 ];
-
+/*const weeks = {
+  week1: {
+    created_date: new Date().toUTCString(),
+    number: 1,
+    weigth: 85,
+    comment: "None",
+    sport: "None",
+    consumed: {
+      l1: {
+        product: "Pomme",
+        nutri_score: "A",
+        isScanned: false,
+        created_date: new Date().toUTCString(),
+      },
+      l2: {
+        product: "Mars",
+        nutri_score: "E",
+        isScanned: false,
+        created_date: new Date().toUTCString(),
+      },
+    },
+  },
+  week2: {},
+};*/
 export const foodSlice = createSlice({
   name: "foods",
   initialState,
