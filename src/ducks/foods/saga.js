@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all } from "redux-saga/effects";
+import { call, put, takeLatest, all } from "redux-saga/effects";
 import { onAuthStateChanged } from "../../utils/auth";
 import firebase from 'firebase/app'
 import 'firebase/database'
@@ -54,8 +54,8 @@ function* getFoodsSaga() {
 
 export default function* tipsSaga() {
   yield all([
-    takeEvery(getFood.type, getFoodSaga),
-    takeEvery(addFood.type, addFoodSaga),
-    takeEvery(getFoods.type, getFoodsSaga),
+    takeLatest(getFood.type, getFoodSaga),
+    takeLatest(addFood.type, addFoodSaga),
+    takeLatest(getFoods.type, getFoodsSaga),
   ]);
 }

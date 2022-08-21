@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all } from "redux-saga/effects";
+import { call, put, takeLatest, all } from "redux-saga/effects";
 import {
   addTip,
   tipSuccess,
@@ -36,7 +36,7 @@ function* getTipsSaga(action) {
 
 export default function* tipsSaga() {
   yield all([
-    takeEvery(addTip.type, createTipSaga),
-    takeEvery(getTips.type, getTipsSaga),
+    takeLatest(addTip.type, createTipSaga),
+    takeLatest(getTips.type, getTipsSaga),
   ]);
 }

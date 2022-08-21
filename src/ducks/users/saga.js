@@ -1,4 +1,4 @@
-import { call, put, takeEvery, all, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest, all } from "redux-saga/effects";
 import {
   login,
   loginSuccess,
