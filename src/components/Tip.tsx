@@ -1,6 +1,7 @@
 import { useParams, useLocation } from "react-router-dom";
+import React from "react";
 
-function Tip({ onDeleteTip }) {
+function Tip() {
   const params = useParams();
   const location = useLocation();
   const tip = location.state;
@@ -10,7 +11,7 @@ function Tip({ onDeleteTip }) {
       <h1>{tip.title}</h1>
       <p>{tip.content}</p>
       Hey, tip {params.tipId} here
-      <button onClick={() => onDeleteTip(params)}>Supprimer</button>
+      {/*<button onClick={() => onDeleteTip(params)}>Supprimer</button>*/}
     </div>
   );
 }

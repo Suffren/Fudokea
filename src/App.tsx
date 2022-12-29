@@ -10,9 +10,11 @@ import SignUp from "./containers/SignUp";
 import Header from "./containers/Header";
 import Login from "./containers/Login";
 import PrivateRoute from "./PrivateRoute";
+import React from "react";
+import UserState from "./ducks/users/reducer"
 
 function App() {
-  const isConnected = useSelector((state) => state.users.isConnected);
+  const isConnected = useSelector((state: UserState) => state.users.isConnected);
 
   return (
     <div className="App">
@@ -20,17 +22,16 @@ function App() {
       <div id="page">
         {isConnected && <Sidebar />}
         <Routes>
-          <Route exact path="/sign-up" element={<SignUp />} />
-          <Route exact path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route
-            exact
-            path="/"
+                        path="/"
             element={<PrivateRoute isConnected={isConnected} />}
           >
-            <Route exact path="/" element={<FoodsHistory />} />
-            <Route exact path="tips" element={<Tips />} />
-            <Route exact path="tips/:tipId" element={<Tip />} />
-            <Route exact path="tips/create" element={<TipCreate />} />
+            <Route path="/" element={<FoodsHistory />} />
+            <Route path="tips" element={<Tips />} />
+            <Route path="tips/:tipId" element={<Tip />} />
+            <Route path="tips/create" element={<TipCreate />} />
           </Route>
           <Route
             path="*"
@@ -46,4 +47,4 @@ function App() {
   );
 }
 
-export default App;
+export const BaseApp = App;

@@ -9,6 +9,12 @@ const initialState = {
   error: "",
 };
 
+export type UserState = {
+  users: {
+    isConnected: boolean
+  }
+}
+
 export const userSlice = createSlice({
   name: "users",
   initialState,

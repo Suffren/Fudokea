@@ -13,7 +13,7 @@ export default function useURLParams(getData) {
       const urlParams = new URLSearchParams(location.search);
 
       if (urlParams.has('page')) {
-        const paramPage = params.get('page');
+        const paramPage = urlParams.get('page');
         page = !Number.isNaN(paramPage) && paramPage > 0 ? paramPage : 1;
         setPage(parseInt(page, 10));
       }

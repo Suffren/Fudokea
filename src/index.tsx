@@ -2,11 +2,11 @@ import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import { ReduxRouter } from "@lagunovsky/redux-react-router";
-import { browserHistory } from "./history";
+import { browserHistory } from "./appHistory";
 
 import "./index.css";
-import App from "./App";
-import configureStore from "./configureStore";
+import {BaseApp} from "./App";
+import {configureStore} from "./configureStore";
 
 const routerSelector = (state) => state.router;
 const store = configureStore();
@@ -18,7 +18,7 @@ ReactDOM.render(
         history={browserHistory}
         store={store}
         selector={routerSelector}
-        children={<App />}
+        children={<BaseApp />}
       />
     </Provider>
   </React.StrictMode>,
