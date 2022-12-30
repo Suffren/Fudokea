@@ -1,7 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+type InitFood = {
+  data: any[],
+  isLoading: boolean
+};
+
+const initialState: InitFood = {
   data: [],
+  isLoading: false
 };
 
 const weeks = [
@@ -56,7 +62,7 @@ export const foodSlice = createSlice({
     getFoods: (state) => {
       state.isLoading = true;
     },
-    addFood: (state) => {
+    addFood: (state, action) => {
       state.isLoading = true;
     },
     foodSuccess: (state, action) => {
@@ -67,7 +73,7 @@ export const foodSlice = createSlice({
       state.isLoading = false;
     },
     foodsSuccess: (state, action) => {
-      const foods = Object.keys(action.payload).map((foodId) => ({
+      const foods = Object.keys(action.payload).map((foodId: string) => ({
         ...action.payload[foodId],
         id: foodId,
       }));

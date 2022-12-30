@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { FoodType } from "../containers/FoodsHistory";
 
-export default function Food(prop) {
+export default function Food(prop: FoodType) {
   const [food, setFood] = useState("");
 
   function handleEdit() {

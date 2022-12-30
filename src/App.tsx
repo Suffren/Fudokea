@@ -10,11 +10,10 @@ import SignUp from "./containers/SignUp";
 import Header from "./containers/Header";
 import Login from "./containers/Login";
 import PrivateRoute from "./PrivateRoute";
-import React from "react";
-import UserState from "./ducks/users/reducer"
+import { RootState } from "./reducers";
 
 function App() {
-  const isConnected = useSelector((state: UserState) => state.users.isConnected);
+  const isConnected = useSelector((state: RootState) => state.users.isConnected);
 
   return (
     <div className="App">

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import DotButtons from "../ui/DotButtons";
+import { FoodType } from "../containers/FoodsHistory";
 
-export default function ProductInput({ addProduct }) {
+type ProductType = {
+  addProduct: (f: FoodType) => void
+};
+
+export default function ProductInput({ addProduct }: ProductType) {
   const [productName, setProductName] = useState("");
   const [nutriScore, setNutriScore] = useState("");
 

@@ -1,10 +1,13 @@
 import { useParams, useLocation } from "react-router-dom";
-import React from "react";
+export type TipType = {
+  title: string,
+  content:string,
+};
 
 function Tip() {
   const params = useParams();
   const location = useLocation();
-  const tip = location.state;
+  const tip = location.state as TipType;
 
   return (
     <div>

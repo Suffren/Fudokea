@@ -1,21 +1,28 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { addFood, getFoods } from "../ducks/foods/reducer";
-
+import { RootState } from "../reducers"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import ProductInput from "../components/ProductInput";
 import Food from "../components/Food";
+export type FoodType = {
+  create_date?: number,
+  nutri_score:string,
+  product: string,
+  scanned?:boolean,
+  user_id?: string,
+};
 
 function FoodsHistory() {
   const dispatch = useDispatch();
-  const foods = useSelector((state) => state.foods.data);
+  const foods = useSelector((state: RootState) => state.foods.data);
   const [showAddProduct, setShowAddProduct] = useState(false);
 
-  function HandleAddProduct(product) {
-    dispatch(addFood({ ...product, scanned: false }));
+  function HandleAddFood(food: FoodType) {
+    dispatch(addFood({ ...food, scanned: false }));
   }
 
   useEffect(() => {
@@ -47,7 +54,7 @@ function FoodsHistory() {
                   <Food {...food} />
                 </div>
               ))}
-            {showAddProduct && <ProductInput addProduct={HandleAddProduct} />}
+            {showAddProduct && <ProductInput addProduct={HandleAddFood} />}
           </div>
         </div>
       </div>

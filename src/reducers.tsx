@@ -11,4 +11,6 @@ const rootReducer = combineReducers({
   foods: FoodsReducer,
   users: UsersReducer,
 });
+
 export default rootReducer;
+export type RootState = ReturnType<typeof rootReducer>;

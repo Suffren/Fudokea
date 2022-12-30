@@ -6,14 +6,8 @@ const initialState = {
   data: [],
   isLoading: false,
   isConnected,
-  error: "",
+  error: {},
 };
-
-export type UserState = {
-  users: {
-    isConnected: boolean
-  }
-}
 
 export const userSlice = createSlice({
   name: "users",

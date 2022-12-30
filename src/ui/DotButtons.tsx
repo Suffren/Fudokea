@@ -1,6 +1,12 @@
 import styled from "styled-components";
+import { Dispatch, SetStateAction } from "react";
 
-function DotButtons({ handleClick, nutriScore }) {
+type DotButnType = {
+  handleClick: Dispatch<SetStateAction<string>>,
+  nutriScore: string,
+};
+
+function DotButtons({ handleClick, nutriScore }: DotButnType) {
   return (
     <StyledUl>
       <li
