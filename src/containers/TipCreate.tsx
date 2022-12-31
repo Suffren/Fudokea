@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addTip } from "../ducks/tips/reducer";
@@ -17,11 +17,11 @@ export default function TipsCreate() {
     setContentTip("");
   };
 
-  function handleTitleChange(event) {
-    setTitleTip(event.target.value);
+  function handleTitleChange(event: ChangeEvent<HTMLInputElement>) {
+    setTitleTip(event.currentTarget.value);
   }
-  function handleContentChange(event) {
-    setContentTip(event.target.value);
+  function handleContentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    setContentTip(event.currentTarget.value);
   }
 
   return (

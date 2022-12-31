@@ -24,7 +24,7 @@ export const tipSlice = createSlice({
   name: "tips",
   initialState,
   reducers: {
-    addTip: (state) => {
+    addTip: (state, action) => {
       state.isLoading = true;
     },
     tipSuccess: (state, action) => {

@@ -6,14 +6,14 @@ const initialState = {
   data: [],
   isLoading: false,
   isConnected,
-  error: {},
+  error: { message: "" },
 };
 
 export const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state, action) => {
       state.isLoading = true;
     },
     loginSuccess: (state, action) => {

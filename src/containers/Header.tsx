@@ -5,7 +5,12 @@ import styled from "styled-components";
 import { logout } from "../ducks/users/reducer";
 import { useDispatch } from "react-redux";
 
-export default function Header({ isConnected }) {
+
+type HeaderProps = {
+  isConnected: boolean
+};
+
+export default function Header({ isConnected }: HeaderProps) {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 

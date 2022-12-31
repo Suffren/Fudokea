@@ -1,22 +1,24 @@
-import { useRef } from "react";
+import { useRef, MutableRefObject, FormEvent } from "react";
 import { login } from "../ducks/users/reducer";
 import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../reducers";
 
 export default function Login() {
-  const isLoading = useSelector((state) => state.users.isLoading);
-  const error = useSelector((state) => state.users.error.message);
-  const inputs = useRef([]);
-  const formRef = useRef();
+  const isLoading = useSelector((state: RootState) => state.users.isLoading);
+  const error = useSelector((state: RootState) => state.users.error.message);
+  const emprtArray: HTMLInputElement[] = [];
+  const inputs = useRef<HTMLInputElement[]>(emprtArray);
+  const formRef = useRef(null);
   const dispatch = useDispatch();
 
-  const addinputs = (el) => {
+  const addinputs = (el: HTMLInputElement) => {
     if (el && !inputs.current.includes(el)) {
       inputs.current.push(el);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     dispatch(
       login({
         email: inputs.current[0].value,
